@@ -1,5 +1,8 @@
 package lc1249
 
+// import "strings"
+// import "fmt"
+
 func minRemoveToMakeValid(s string) string {
 	var st []int //save parentheses index which should be delete
 	//var res string = ""
@@ -38,4 +41,39 @@ func minRemoveToMakeValid(s string) string {
 	}
 	res = append(res, ([]byte(s[start:end]))...)
 	return string(res)
+}
+
+// 4ms, beats 100, using []byte instead of stirngs.Split
+func minRemoveToMakeValidMyModified(s string) string {
+	// a := strings.Split(s, "")
+	a := []byte(s)
+	// fmt.Println(a)
+
+	var b []int // open parentheses
+	for i, n := range s {
+		if n == '(' {
+			b = append(b, i)
+		} else if n == ')' {
+			if len(b) > 0 {
+				b = b[:len(b)-1] // b.pop()
+			} else {
+				// a = append(a[:i], a[i+1:]...) // a.remove(i)
+				a[i] = 0
+			}
+		}
+	}
+
+	for len(b) > 0 {
+		i := b[len(b)-1]
+		// a = append(a[:i], a[i+1:]...)
+		a[i] = 0
+		b = b[:len(b)-1]
+	}
+	ans := a[:0]
+	for _, x := range a {
+		if x != 0 {
+			ans = append(ans, x)
+		}
+	}
+	return string(ans)
 }
