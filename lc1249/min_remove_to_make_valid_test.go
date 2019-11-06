@@ -51,6 +51,6 @@ func Test_Problem1249(t *testing.T) {
 		fmt.Printf("~~%v~~\n", p)
 
 		ast.Equal(a.one, minRemoveToMakeValid(p.one), "输入:%v", p)
-		ast.Equal(a.one, minRemoveToMakeValidMySlow(p.one), "输入:%v", p)
+		ast.Equal(a.one, minRemoveToMakeValidMyModified(p.one), "输入:%v", p)
 	}
 }
