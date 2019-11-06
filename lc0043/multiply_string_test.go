@@ -1,4 +1,4 @@
-package lc43
+package lc0043
 
 import (
 	"fmt"

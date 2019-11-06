@@ -1,4 +1,4 @@
-package lc94
+package lc0094
 
 // TreeNode definition
 type TreeNode struct {

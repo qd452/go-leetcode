@@ -1,4 +1,4 @@
-package lc81
+package lc0081
 
 func search(nums []int, target int) bool {
 	lo, hi := 0, len(nums)-1

@@ -1,4 +1,4 @@
-package lc69
+package lc0069
 
 import (
 	"fmt"

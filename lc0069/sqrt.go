@@ -1,4 +1,4 @@
-package lc69
+package lc0069
 
 func mySqrt(x int) int {
 	lo, hi := 0, x/2+1

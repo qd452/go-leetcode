@@ -1,4 +1,4 @@
-package lc706
+package lc0706
 
 // MyHashMap -  a struct
 type MyHashMap struct {

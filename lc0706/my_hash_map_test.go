@@ -1,4 +1,4 @@
-package lc706
+package lc0706
 
 import (
 	"testing"

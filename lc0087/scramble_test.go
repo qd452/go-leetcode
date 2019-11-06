@@ -1,4 +1,4 @@
-package lc87
+package lc0087
 
 import (
 	"fmt"
