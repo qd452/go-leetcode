@@ -45,7 +45,9 @@ func main() {
 
 	// This example inserts several ints into an IntHeap, checks the minimum,
 	// and removes them in order of priority.
-	h := &IntHeap{2, 1, 5}
+	// h := &IntHeap{2, 1, 5}
+	h := &IntHeap{2,1,5}
+	fmt.Println((*h)[0]) // NOTE!!!
 	heap.Init(h)
 	heap.Push(h, 3)
 	fmt.Printf("minimum: %d\n", (*h)[0])
