@@ -2,7 +2,7 @@ package lc1252
 
 func oddCells(n int, m int, indices [][]int) int {
 	A := make([][]int, n)
-	for i := 0; i < n; i++ {
+	for i := range(A) {
 		A[i] = make([]int, m)
 	}
 	for _, idx := range indices {
