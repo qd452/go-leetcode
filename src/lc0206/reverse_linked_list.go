@@ -6,7 +6,6 @@ import (
 
 type ListNode = util.ListNode
 
-
 // ListNode - Definition for singly-linked list.
 // type ListNode struct {
 //      Val int
