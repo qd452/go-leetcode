@@ -54,4 +54,14 @@ func main() {
 	for h.Len() > 0 {
 		fmt.Printf("%d ", heap.Pop(h))
 	}
+
+	// explore char and int 
+	a := 97
+	tmp := byte(a)
+	ss := "abce"
+	for i:=0;i<len(ss);i++ {
+		fmt.Println("ss ", i, "is", ss[i])
+	}
+	fmt.Println("tmp is ", tmp)
+
 }

@@ -12,14 +12,10 @@ type question struct {
 	ans
 }
 
-// para 是参数
-// one 代表第一个参数
 type para struct {
 	one []int
 }
 
-// ans 是答案
-// one 代表第一个答案
 type ans struct {
 	one []int
 }
@@ -39,7 +35,8 @@ func Test_Problem0206(t *testing.T) {
 		a, p := q.ans, q.para
 		fmt.Printf("~~%v~~\n", p)
 
-		ast.Equal(a.one, l2s(reverseList(s2l(p.one))), "输入:%v", p)
+		ast.Equal(a.one, l2s(reverseList(s2l(p.one))), "input:%v", p)
+		ast.Equal(a.one, l2s(reverseListIterative(s2l(p.one))), "input:%v", p)
 	}
 }
 

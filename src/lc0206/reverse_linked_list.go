@@ -4,6 +4,7 @@ import (
 	"util"
 )
 
+// ListNode - linked list node struct
 type ListNode = util.ListNode
 
 // ListNode - Definition for singly-linked list.
@@ -12,7 +13,7 @@ type ListNode = util.ListNode
 //      Next *ListNode
 //  }
 
-func reverseList(head *ListNode) *ListNode {
+func reverseListIterative(head *ListNode) *ListNode {
 	// prev := &ListNode{} // not nil
 	var prev *ListNode
 	for head != nil {
@@ -22,4 +23,14 @@ func reverseList(head *ListNode) *ListNode {
 		head = tmp
 	}
 	return prev
+}
+
+func reverseList(head *ListNode) *ListNode {
+	if head == nil || head.Next == nil {
+		return head
+	}
+	p := reverseList(head.Next)
+	head.Next.Next = head
+	head.Next = nil
+	return p
 }
