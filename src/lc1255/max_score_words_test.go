@@ -43,5 +43,6 @@ func Test_Problem0087(t *testing.T) {
 		fmt.Printf("~~%v~~\n", p)
 
 		ast.Equal(a.one, maxScoreWords(p.s1, p.s2, p.s3), "input:%v", p)
+		ast.Equal(a.one, maxScoreWordsFaster(p.s1, p.s2, p.s3), "input:%v", p)
 	}
 }

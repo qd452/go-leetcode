@@ -2,7 +2,7 @@ package lc1255
 
 // import "fmt"
 
-func maxScoreWords(words []string, letters []byte, score []int) int {
+func maxScoreWordsFaster(words []string, letters []byte, score []int) int {
 	wordScore := make([]int, len(words))
 	for i, word := range words {
 		cur := 0
@@ -30,6 +30,7 @@ func maxScoreWords(words []string, letters []byte, score []int) int {
 		for i := 0; i < len(words[index]); i++ {
 			curLetter[words[index][i]-'a']++
 		}
+	// https://golang.org/ref/spec#Break_statements
 	OUTER:
 		for k := 0; k < 1; k++ {
 			nextLetter := make([]int, 26)
@@ -48,72 +49,66 @@ func maxScoreWords(words []string, letters []byte, score []int) int {
 }
 
 // https://leetcode.com/contest/weekly-contest-162/ranking/9/
-// func maxScoreWords(words []string, letters []byte, score []int) int {
-// 	wordCount := make([]map[byte]int, len(words))
-// 	//make(map[byte]int)
-// 	for wi, word := range words {
-// 		wordC := make(map[byte]int)
-// 		for i := 0; i < len(word); i++ {
-// 			wordC[word[i]]++
-// 		}
-// 		wordCount[wi] = wordC
-// 	}
+func maxScoreWords(words []string, letters []byte, score []int) int {
+	wordCount := make([]map[byte]int, len(words))
+	//make(map[byte]int)
+	for wi, word := range words {
+		wordC := make(map[byte]int)
+		for i := 0; i < len(word); i++ {
+			wordC[word[i]]++
+		}
+		wordCount[wi] = wordC
+	}
 
-// 	wordScore := make([]int, len(words))
+	wordScore := make([]int, len(words))
 
-// 	for i, wordC := range wordCount {
-// 		tmpScore := 0
-// 		for k, v := range wordC {
-// 			tmpScore += score[k-97] * v
-// 		}
-// 		wordScore[i] = tmpScore
-// 	}
+	for i, wordC := range wordCount {
+		tmpScore := 0
+		for k, v := range wordC {
+			tmpScore += score[k-97] * v
+		}
+		wordScore[i] = tmpScore
+	}
 
-// 	letterCount := make(map[byte]int)
-// 	for _, b := range letters {
-// 		letterCount[b]++
-// 	}
+	letterCount := make(map[byte]int)
+	for _, b := range letters {
+		letterCount[b]++
+	}
 
-// 	fmt.Println(wordCount)
-// 	fmt.Println(wordScore)
-// 	ans := 0
-// 	l := len(words)
-// 	var dfs func(map[byte]int, int, int)
-// 	dfs = func(letterCount map[byte]int, start int, curScore int) {
-// 		if ans < curScore {
-// 			ans = curScore
-// 		}
+	ans := 0
+	l := len(words)
+	var dfs func(map[byte]int, int, int)
+	dfs = func(letterCount map[byte]int, start int, curScore int) {
+		// fmt.Println(letterCount, start, curScore)
+		if ans < curScore {
+			ans = curScore
+		}
 
-// 		for i := start; i < l; i++ {
-// 			if check(wordCount[i], letterCount) {
-// 				dfs(hashMapOp(letterCount, wordCount[i], "-"), i+1, wordScore[i]+curScore)
-// 			}
-// 		}
-// 	}
+		for i := start; i < l; i++ {
+			if check(wordCount[i], letterCount) {
+				dfs(hashMapMinus(letterCount, wordCount[i]), i+1, wordScore[i]+curScore)
+			}
+		}
+	}
 
-// 	dfs(letterCount, 0, 0)
-// 	return ans
-// }
+	dfs(letterCount, 0, 0)
+	return ans
+}
 
-// func check(wordC map[byte]int, letterCount map[byte]int) bool {
-// 	for wk, wv := range wordC {
-// 		lv, ok := letterCount[wk]
-// 		if !ok || wv > lv {
-// 			return false
-// 		}
-// 	}
-// 	return true
-// }
+func check(wordC map[byte]int, letterCount map[byte]int) bool {
+	for wk, wv := range wordC {
+		lv, ok := letterCount[wk]
+		if !ok || wv > lv {
+			return false
+		}
+	}
+	return true
+}
 
-// func hashMapOp(letterCount map[byte]int, wordC map[byte]int, op string) map[byte]int {
-// 	ans := make(map[byte]int)
-// 	for wk, wv := range wordC {
-// 		if op == "-" {
-// 			ans[wk] = letterCount[wk] - wv
-// 		} else if op == "+" {
-// 			ans[wk] = letterCount[wk] + wv
-// 		}
-
-// 	}
-// 	return ans
-// }
+func hashMapMinus(letterCount map[byte]int, wordC map[byte]int) map[byte]int {
+	ans := make(map[byte]int)
+	for wk, wv := range letterCount {
+		ans[wk] = wv - wordC[wk]
+	}
+	return ans
+}
