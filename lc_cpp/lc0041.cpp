@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <vector>
 #include <assert.h>
+#include <iostream>
 
 using namespace std;
 
@@ -40,6 +41,7 @@ int main () {
     assert (ans == 4);
     A = {};
     ans = s.firstMissingPositive(A);
+    cout << "ans is " << ans << endl;
     assert (ans == 1);
 
     return 0;
